@@ -1,1 +1,19 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+/* В этом файле будут храниться все значения переменных в исходном состоянии, 
+а так же их изменения в зависимости от ширины устройства */
+/* Шрифты, их вес, цвета */
+
+:root {
+  --main-font: 'Inter-Variable';
+  --accent-font: 'PressStart2P';
+  --curr-wght: 400;
+  --main-font-size: 14px;
+  --main-color: #000;
+  --bg-color: #fff;
+  --accent-color: #000;
+  --text-stroke-color: #fff;
+
+  /* Heart */
+  --sparkles-color: #fff;
+  --contour-color: #000;
+  --animation-fill-color: #f00;
+}

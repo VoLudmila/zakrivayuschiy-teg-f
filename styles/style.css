@@ -4,13 +4,483 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
 
 .page {
+  display: grid;
+  place-items: center;
+  gap: 100px;
+  padding-top: 100px;
+  font-family: var(--main-font, sans-serif);
+  font-size: var(--main-font-size);
+  background-image:
+    repeating-linear-gradient(
+      #d3d3d3,
+      #d3d3d300 2px,
+      #d3d3d3 2px,
+      #d3d3d300 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #d3d3d3,
+      #d3d3d300 2px,
+      #d3d3d3 2px,
+      #d3d3d300 4px
+    ),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+  background-size: cover;
+  background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-variation-settings: 'wght' var(--curr-wght, 400);
+}
+
+h1,
+h2,
+button {
+  font-family: var(--accent-font, monospace);
+}
+
+.section-block {
+  width: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+}
+
+.white-bg {
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+}
+
+/* Header */
+
+.header {
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  min-height: 38.33%;
+  padding-top: 130px;
+  padding-bottom: 30px;
+  background-color: var(--bg-color);
+}
+
+.logo {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+}
+
+.header__title {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase;
+}
+
+.header__theme-menu-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity linear 0.7s;
+}
+
+.header:hover .header__theme-menu-list {
+  opacity: 1;
+}
+
+.header__theme-menu-button {
+  border: none;
+  font-family: var(--accent-font, monospace);
+  text-transform: uppercase;
+  background: inherit;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    color: white;
+    background-image: url(../svg/arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &:hover::before {
+    color: currentColor;
+  }
+}
+
+.header__theme-menu-button_active {
+  opacity: 0.6;
+}
+
+/* Main */
+
+.main {
+  display: grid;
+  gap: 50px;
+}
+
+/* Articles */
+
+.article__list {
+  display: grid;
+  gap: 50px;
+}
+
+.article__title {
+  padding: 6px 12px;
+  font-size: 1.3em;
+  font-variation-settings: 'wght' 700;
+}
+
+.article__picture {
+  position: relative;
+  max-block-size: 696px;
+  max-inline-size: 696px;
+}
+
+.article__picture-label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+  opacity: 0.5;
+  color: var(--main-color);
+  font-family: var(--accent-font, monospace);
+  text-shadow:
+    1px 1px 0 var(--text-stroke-color),
+    -1px -1px 0 var(--text-stroke-color),
+    1px -1px 0 var(--text-stroke-color),
+    -1px 1px 0 var(--text-stroke-color);
+  mix-blend-mode: hard-light;
+}
+
+@supports (
+  (text-stroke: 1px var(--text-stroke-color)) or
+    (-webkit-text-stroke: 1px var(--text-stroke-color))
+) {
+
+  .article__picture-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+    text-stroke: 1px var(--text-stroke-color);
+  }
+}
+
+.article__img {
+  border-top: 2px solid var(--main-color);
+  border-bottom: 2px solid var(--main-color);
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+.grayscale {
+  filter: grayscale(1);
+}
+
+.hue-rotate {
+  filter: hue-rotate(0.1turn);
+}
+
+.saturate {
+  filter: saturate(150%);
+}
+
+.sepia {
+  filter: sepia(0.6);
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.blur {
+  filter: blur(3px);
+}
+
+.multifilter {
+  filter: hue-rotate(0.9turn) contrast(1.3) saturate(0.8);
+}
+
+.article__text {
+  display: grid;
+  gap: 25px;
+  padding: 25px;
+  font-size: 1.3em;
+}
+
+.article__btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin: 0 25px 25px;
+}
+
+.button__text {
+  color: var(--bg-color);
+  mix-blend-mode: difference;
+}
+
+/* Like */
+
+.card__like-button {
+  position: relative;
+  border: 2px solid var(--main-color);
+  padding: 12px 37px;
+  background-color: var(--bg-color);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+    transition: scale 0.5s ease-in-out;
+    scale: 0;
+  }
+
+  &:hover::before {
+    scale: 1;
+  }
+
+  &:focus {
+    box-shadow:
+      2px -2px 0 0 currentColor,
+      2px -2px 0 0 inset currentColor;
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow:
+      2px -2px 0 0 currentColor,
+      2px -2px 0 0 inset currentColor;
+    text-shadow: 2px 2px currentColor;
+  }
+}
+
+/* Heart */
+
+.card__icon-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  outline: transparent solid 2px;
+  transition: outline 0.3s ease;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: var(--accent-color) solid 2px;
+  }
+}
+
+.like-icon {
+  object-fit: cover;
+  object-position: center;
+  transform-origin: center;
+  cursor: pointer;
+
+  .contour {
+    transition: fill 0.1s linear 0;
+  }
+
+  .main-body {
+    transition: fill 0.3s linear 0;
+  }
+
+  .core {
+    transition: fill 0.3s linear 0.03s;
+  }
+
+  .sparks {
+    opacity: 0;
+  }
+
+  &:hover .core {
+    fill: var(--accent-color);
+    transition: outline 0.3s ease 0;
+  }
+
+  &:hover .main-body {
+    fill: var(--accent-color);
+    transition-delay: 0.05s;
+  }
+
+  &:active .core {
+    fill: var(--animation-fill-color);
+    transition-delay: 0;
+  }
+
+  &:active .main-body {
+    fill: var(--animation-fill-color);
+    transition-delay: 0.05s;
+  }
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.06s;
+  animation: heartbeat 0.3s ease-in 0.1s;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.05s;
+  animation: heartbeat 0.3s ease-in 0.1s;
+}
+
+.like-icon.is-liked .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0;
+  animation: heartbeat 0.3s ease-in 0.1s;
+}
+
+.like-icon.is-liked .sparks {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.06s;
+  animation: movingSparkles 0.3s ease-in 0.3s;
+}
+
+/* Save */
+
+.save {
+  display: grid;
+  place-items: center;
+  font-weight: 400;
+}
+
+.save__svg {
+  grid-column: 1;
+  width: 21px;
+  height: 21px;
+  mix-blend-mode: difference;
+}
+
+.save__dialog {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 30px 20px;
+  padding: 30px;
+  font-family: var(--accent-font, monospace);
+  text-transform: uppercase;
+  transition: opacity 0.3s ease-in-out;
+  min-inline-size: 24.5%;
+  max-inline-size: 355px;
+
+  &::backdrop {
+    opacity: 0.75;
+    background-color: var(--main-color);
+  }
+
+  &:not([open]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  & > .save__svg {
+    width: 39px;
+    height: 39px;
+  }
+}
+
+.save__button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 20px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+    transition: scale 0.5s ease-in-out;
+    scale: 0;
+  }
+
+  &:hover::before {
+    scale: 1;
+  }
+
+  &:focus {
+    box-shadow: 2px 2px 0 0 currentColor;
+    outline: none;
+  }
+}
+
+.floppy-icon {
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: difference;
+}
+
+.save__text {
+  grid-column: 2;
+}
+
+.save__close {
+  position: relative;
+  grid-column: 2 span;
+  border: 2px solid var(--main-color);
+  padding-block: 12px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+    transition: scale 0.5s ease-in-out;
+    scale: 0;
+  }
+
+  &:hover::before {
+    scale: 1;
+  }
+
+  &:focus {
+    box-shadow: 2px 2px 0 0 currentColor;
+    outline: none;
+  }
+}
+
+@media (width <= 375px) {
+
+  .header {
+    gap: 16px;
+    min-height: 49.03%;
+    padding-top: 122px;
+  }
+
+  .save__button {
+    flex-direction: column;
+  }
+
+  .save__svg {
+    width: 28px;
+    height: 28px;
+  }
 }
