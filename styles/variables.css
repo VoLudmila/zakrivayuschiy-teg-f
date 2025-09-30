@@ -12,6 +12,12 @@
   --accent-color: #000;
   --text-stroke-color: #fff;
 
+  /* Page background gradient */
+  --bg-grad-main-color: #d3d3d3;
+  --bg-grad-lines-color: #d3d3d300;
+  --bg-grad-shadow-top-color: #e7e7e7;
+  --bg-grad-shadow-btm-color: #1a1a1a;
+
   /* Heart */
   --sparkles-color: #fff;
   --contour-color: #000;

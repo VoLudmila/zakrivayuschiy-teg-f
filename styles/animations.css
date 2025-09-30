@@ -10,7 +10,7 @@
 
 */
 
-@keyframes heartbeat {
+@keyframes heart-beat {
 
   0% {
     scale: 1;
@@ -21,7 +21,7 @@
   }
 }
 
-@keyframes movingSparkles {
+@keyframes moving-sparkles {
 
   0% {
     opacity: 0;
