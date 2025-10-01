@@ -78,6 +78,7 @@
 
   &:focus {
     box-shadow: 2px 2px 0 0 currentColor;
+    outline: none;
   }
 }
 
@@ -220,14 +221,8 @@
 
 .card__like-button {
   position: relative;
-  padding: 12px 37px;
-
-  &:focus {
-    box-shadow:
-      2px -2px 0 0 currentColor,
-      2px -2px 0 0 inset currentColor;
-    outline: none;
-  }
+  padding: 12px 0;
+  min-inline-size: 162px;
 
   &:focus-visible {
     box-shadow:
@@ -388,6 +383,7 @@
 .save__text {
   grid-column: 2;
   font-size: 1em;
+  line-height: 1.11;
 }
 
 .save__close {
