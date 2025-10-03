@@ -221,8 +221,8 @@
 
 .card__like-button {
   position: relative;
-  padding: 12px 0;
-  min-inline-size: 162px;
+  padding: 10px 0;
+  min-inline-size: 130px;
 
   &:focus-visible {
     box-shadow:
